@@ -48,7 +48,7 @@ jobs:
       - name: Build Debug APK
         working-directory: ${{ env.PROJECT_DIR }}
         run: |
-          gradle assembleDebug --stacktrace
+          gradle assembleDebug --info --stacktrace
 
       - name: Find APK
         run: |
