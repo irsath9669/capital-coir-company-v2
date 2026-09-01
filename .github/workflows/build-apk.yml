@@ -16,12 +16,10 @@ jobs:
 
       - name: Extract V2 project
         run: |
-          - name: Extract V2 project
-  run: |
-    rm -rf extracted
-    ZIP_FILE=$(find . -maxdepth 1 -type f -name "*.zip" | head -n 1)
-    echo "Using ZIP: $ZIP_FILE"
-    unzip -q "$ZIP_FILE" -d extracted
+          rm -rf extracted
+          ZIP_FILE=$(find . -maxdepth 1 -type f -name "*.zip" | head -n 1)
+          echo "Using ZIP: $ZIP_FILE"
+          unzip -q "$ZIP_FILE" -d extracted
 
       - name: Find Android project
         run: |
@@ -42,15 +40,14 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v6
-        with:
-          gradle-version: '9.1.0'
+      - name: Make Gradle executable
+        run: |
+          chmod +x "$PROJECT_DIR/gradlew"
 
       - name: Build Debug APK
         working-directory: ${{ env.PROJECT_DIR }}
         run: |
-          gradle assembleDebug --stacktrace
+          ./gradlew assembleDebug --stacktrace
 
       - name: Find APK
         run: |
