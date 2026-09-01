@@ -40,11 +40,15 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.1.0'
+
       - name: Build Debug APK
         working-directory: ${{ env.PROJECT_DIR }}
         run: |
-          chmod +x ./gradlew
-          ./gradlew assembleDebug --stacktrace
+          gradle assembleDebug --stacktrace
 
       - name: Find APK
         run: |
