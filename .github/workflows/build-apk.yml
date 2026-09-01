@@ -18,7 +18,7 @@ jobs:
         run: |
           rm -rf extracted
           mkdir extracted
-          unzip -q CapitalCoirCompanyV2_Stage1.zip -d extracted
+          unzip -o CapitalCoirCompanyV2_V2_RoomFix.zip -d extracted
 
       - name: Find Android project
         run: |
