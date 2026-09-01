@@ -40,13 +40,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Make Gradle executable
-        run: |
-          chmod +x "$PROJECT_DIR/gradlew"
-
       - name: Build Debug APK
         working-directory: ${{ env.PROJECT_DIR }}
         run: |
+          chmod +x ./gradlew
           ./gradlew assembleDebug --stacktrace
 
       - name: Find APK
